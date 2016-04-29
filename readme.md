@@ -18,6 +18,7 @@ My notes from [docker self paced training](https://training.docker.com/self-pace
 - [Docker concepts and terminology](#docker-concepts-and-terminology)
 - [Installation](#installation)
 - [Docker `hello world`](#docker-hello-world)
+- [Docker client and daemon](#docker-client-and-daemon)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -146,3 +147,11 @@ Share images, automate workflows, and more with a free Docker Hub account:
 For more examples and ideas, visit:
  https://docs.docker.com/engine/userguide/
 ```
+
+## Docker client and daemon
+
+- `docker` follows `client/server` architecture
+- `client` passes the user inputs to `daemon` or `server`
+- `daemon` builds, runs and manages `containers`
+- `client` and `server` are most of the time in same host, but can be in different hosts too
+- `$ docker version` will provide details of `client` as well as `server`
