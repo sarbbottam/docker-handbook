@@ -15,6 +15,7 @@ My notes from [docker self paced training](https://training.docker.com/self-pace
   - [`virtual machine` (hypervisor based virtualization)](#virtual-machine-hypervisor-based-virtualization)
   - [container base virtualization](#container-base-virtualization)
   - [Container vs VMs](#container-vs-vms)
+- [Docker concepts and terminology](#docker-concepts-and-terminology)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -85,3 +86,10 @@ container isolates the run time environment
 - less CPU, RAM, storage space
 - more containers per m/c than VM
 - greater portability
+
+## Docker concepts and terminology
+
+`docker engine` is program that enables containers to be built, shipped and run.
+It is also known as `docker daemon` or `docker server`.
+- it uses linux kernel namespaces and control groups to create and manage `containers`.
+- it uses `pid`, `net`, `ipc`, `mnt` and `uts` namespaces, to create an isolated workspace called `container`
