@@ -21,6 +21,7 @@ My notes from [docker self paced training](https://training.docker.com/self-pace
 - [Docker client and daemon](#docker-client-and-daemon)
 - [Docker containers and images](#docker-containers-and-images)
 - [Docker orchestration](#docker-orchestration)
+- [Benefits of Docker](#benefits-of-docker)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -172,3 +173,13 @@ containers
 
 - `docker-compose` - create and manage multi-container application
 - `docker-swarm` - clusters many engine and schedule containers
+
+## Benefits of Docker
+
+- separation of concerns
+  - developers focus on building the apps
+  - sys admins focus on the deployement
+- faster development cycle
+- application portability
+- scalability
+- more apps on one host machine
