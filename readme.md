@@ -19,6 +19,7 @@ My notes from [docker self paced training](https://training.docker.com/self-pace
 - [Installation](#installation)
 - [Docker `hello world`](#docker-hello-world)
 - [Docker client and daemon](#docker-client-and-daemon)
+- [Docker containers and images](#docker-containers-and-images)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -155,3 +156,13 @@ For more examples and ideas, visit:
 - `daemon` builds, runs and manages `containers`
 - `client` and `server` are most of the time in same host, but can be in different hosts too
 - `$ docker version` will provide details of `client` as well as `server`
+
+## Docker containers and images
+
+images
+- read only templates used to create containers
+
+containers
+- isolated application platform
+- contains everything to run an application, packaged with dependencies
+- based on one or more images
