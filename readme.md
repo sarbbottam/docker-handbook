@@ -16,6 +16,7 @@ My notes from [docker self paced training](https://training.docker.com/self-pace
   - [container base virtualization](#container-base-virtualization)
   - [Container vs VMs](#container-vs-vms)
 - [Docker concepts and terminology](#docker-concepts-and-terminology)
+- [Installation](#installation)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -93,3 +94,28 @@ container isolates the run time environment
 It is also known as `docker daemon` or `docker server`.
 - it uses linux kernel namespaces and control groups to create and manage `containers`.
 - it uses `pid`, `net`, `ipc`, `mnt` and `uts` namespaces, to create an isolated workspace called `container`
+
+## Installation
+
+- For Mac/Windows, install docker application from [beta.docker.com](https://beta.docker.com/)
+- For Linux, check out instructions at [docs.docker.com/engine/installation/](https://docs.docker.com/engine/installation/)
+
+Verify installation by `docker version`.
+If you see something like below, you are all set.
+```
+Client:
+ Version:      1.11.0
+ API version:  1.23
+ Go version:   go1.5.4
+ Git commit:   4dc5990
+ Built:        Wed Apr 13 19:36:04 2016
+ OS/Arch:      darwin/amd64
+
+Server:
+ Version:      1.11.0
+ API version:  1.23
+ Go version:   go1.5.4
+ Git commit:   a5315b8
+ Built:        Tue Apr 26 15:23:39 2016
+ OS/Arch:      linux/amd64
+ ```
