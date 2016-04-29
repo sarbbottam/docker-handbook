@@ -20,6 +20,7 @@ My notes from [docker self paced training](https://training.docker.com/self-pace
 - [Docker `hello world`](#docker-hello-world)
 - [Docker client and daemon](#docker-client-and-daemon)
 - [Docker containers and images](#docker-containers-and-images)
+- [Docker orchestration](#docker-orchestration)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -166,3 +167,8 @@ containers
 - isolated application platform
 - contains everything to run an application, packaged with dependencies
 - based on one or more images
+
+## Docker orchestration
+
+- `docker-compose` - create and manage multi-container application
+- `docker-swarm` - clusters many engine and schedule containers
