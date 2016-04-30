@@ -27,6 +27,7 @@ My notes from [docker self paced training](https://training.docker.com/self-pace
 - [Docker container with terminal](#docker-container-with-terminal)
 - [More on containers ...](#more-on-containers-)
 - [Containers in detached mode](#containers-in-detached-mode)
+- [Image layers](#image-layers)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -258,3 +259,10 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
 - checkout `IP:PORT` in browser; for example `0.0.0.0:32769` w.r.t. above `docker ps`
 - if no command is specified to `docker run` it would execute the `default` command.
   - for tomcat its `catalina.sh run`
+
+## Image layers
+
+- `images` are comprised of multiple layers
+- a **`layer` is just another image**
+- every `image` contains a base layer
+- layers are read only
