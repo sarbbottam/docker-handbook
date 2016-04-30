@@ -33,7 +33,7 @@ My notes from [docker self paced training](https://training.docker.com/self-pace
 - [Dockerfile](#dockerfile)
   - [What is Dockerfile?](#what-is-dockerfile)
   - [Dockerfile instructions](#dockerfile-instructions)
-  - [`RUN` instruction](#run-instruction)
+- [`RUN` instruction](#run-instruction)
 - [Build image from `Dockerfile`](#build-image-from-dockerfile)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -345,7 +345,7 @@ RUN apt-get -qq update
 RUN apt-get -qq -y install curl
 ```
 
-### `RUN` instruction
+## `RUN` instruction
 
 - each `RUN` instruction will execute the command on top of `writable layer` and `commit` the changes
 - aggregate multiple `RUN` instructions using `&&` to avoid multiple `commit`
