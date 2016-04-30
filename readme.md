@@ -26,6 +26,7 @@ My notes from [docker self paced training](https://training.docker.com/self-pace
 - [Docker containers](#docker-containers)
 - [Docker container with terminal](#docker-container-with-terminal)
 - [More on containers ...](#more-on-containers-)
+- [Containers in detached mode](#containers-in-detached-mode)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -240,3 +241,20 @@ UID        PID  PPID  C STIME TTY          TIME CMD
 root         1     0  0 03:09 ?        00:00:00 ps -ef
 ```
 - docker provides a random name to the container if not explicitly provided
+
+## Containers in detached mode
+
+- `$ docker run -d image command`; `-d` tells `docker` to run the container in detached mode, in background
+  - make sure the `command` provided runs a hanging process, like run a web server, otherwise the container will stop as soon as the process with `PID 1` exits
+- `$ docker logs container-id` to inspect the output of the container
+  - `$ docker logs -f container-id` is similat to `tail -f`
+- `$ docker run -d -P tomcat` will run tomcat in detached mode
+  - `-P` tell `docker` to map `container port` to `host port`
+```sh
+$ docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS                     NAMES
+3c4e535cfae8        tomcat              "catalina.sh run"   3 seconds ago       Up 2 seconds        0.0.0.0:32769->8080/tcp   hungry_pike
+```
+- checkout `IP:PORT` in browser; for example `0.0.0.0:32769` w.r.t. above `docker ps`
+- if no command is specified to `docker run` it would execute the `default` command.
+  - for tomcat its `catalina.sh run`
