@@ -24,6 +24,7 @@ My notes from [docker self paced training](https://training.docker.com/self-pace
 - [Benefits of Docker](#benefits-of-docker)
 - [Docker images](#docker-images)
 - [Docker containers](#docker-containers)
+- [Docker container with terminal](#docker-container-with-terminal)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -207,3 +208,14 @@ hello-world         latest              94df4f0ce8a4        3 days ago          
 UID        PID  PPID  C STIME TTY          TIME CMD
 root         1     0  0 03:09 ?        00:00:00 ps -ef
 ```
+
+## Docker container with terminal
+
+- use `-i` & `-t` `options` with `docker run`
+  - `-i` to connect to STDIN on container
+  - `-t` to get pseudo-terminal
+```sh
+$ docker run -i -t ubuntu bash
+root@0538835f124a:/#
+```
+  - `0538835f124a` is the `container id`
