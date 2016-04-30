@@ -22,6 +22,7 @@ My notes from [docker self paced training](https://training.docker.com/self-pace
 - [Docker containers and images](#docker-containers-and-images)
 - [Docker orchestration](#docker-orchestration)
 - [Benefits of Docker](#benefits-of-docker)
+- [Docker images](#docker-images)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -183,3 +184,14 @@ containers
 - application portability
 - scalability
 - more apps on one host machine
+
+## Docker images
+
+- `$ docker images` will list the local `images`
+```sh
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+hello-world         latest              94df4f0ce8a4        3 days ago          967 B
+```
+- `$ docker run <image>` will fetch the image from the `docker registry` (most likely hub.docker.com) if not available locally
+- `images` are specified by `repository:tag`
+- if no tag is specified `docker` will use the tag `latest`
