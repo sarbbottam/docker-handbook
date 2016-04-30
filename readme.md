@@ -25,6 +25,7 @@ My notes from [docker self paced training](https://training.docker.com/self-pace
 - [Docker images](#docker-images)
 - [Docker containers](#docker-containers)
 - [Docker container with terminal](#docker-container-with-terminal)
+- [More on containers ...](#more-on-containers-)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -219,3 +220,23 @@ $ docker run -i -t ubuntu bash
 root@0538835f124a:/#
 ```
   - `0538835f124a` is the `container id`
+
+## More on containers ...
+- `$ docker run image` **will always create a new** `container`
+- use `$ docker start container-id` **to start an existing container**
+- to list existing container use `$ docker ps -a`
+- use `$ docker ps` to list only the active containers
+```sh
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                          PORTS               NAMES
+0538835f124a        ubuntu              "bash"              8 minutes ago       Exited (0) About a minute ago                       mad_mirzakhani
+43e171ebaa97        ubuntu              "ps -ef"            14 minutes ago      Exited (0) 14 minutes ago                           elated_wing
+913597689e93        hello-world         "/hello"            5 hours ago         Exited (0) 5 hours ago                              suspicious_lovelace
+```
+- a container runs as long as the process corresponding to the `command`, specified in the `docker run command` runs
+- command's `pid` is always 1
+- `$ docker run ubuntu ps -ef`
+```sh
+UID        PID  PPID  C STIME TTY          TIME CMD
+root         1     0  0 03:09 ?        00:00:00 ps -ef
+```
+- docker provides a random name to the container if not explicitly provided
