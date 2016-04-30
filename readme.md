@@ -30,6 +30,10 @@ My notes from [docker self paced training](https://training.docker.com/self-pace
 - [Image layers](#image-layers)
 - [Container writable layer](#container-writable-layer)
 - [`docker commit`](#docker-commit)
+- [Dockerfile](#dockerfile)
+  - [What is Dockerfile?](#what-is-dockerfile)
+  - [Dockerfile instructions](#dockerfile-instructions)
+  - [`RUN` instruction](#run-instruction)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -318,3 +322,32 @@ root         1     0  0 03:09 ?        00:00:00 ps -ef
   /usr/bin/curl
   root@86d61ffb3dac:/#
   ```
+
+## Dockerfile
+
+### What is Dockerfile?
+
+A `Dockerfile` is a configuration file that contains instructions for building a `Docker image`
+- more effective than docker commit
+- create image multiple times via `docker build` without carrying out the redundant steps manually
+- easily fits in CI/CD process
+
+### Dockerfile instructions
+
+Instructions specify what to do while building `image`
+- `FROM` specifies `base image`
+  - every `image` needs a `base image`
+- `RUN` specifies which command to execute
+```Dockerfile
+FROM ubuntu
+RUN apt-get -qq update
+RUN apt-get -qq -y install curl
+```
+
+### `RUN` instruction
+
+- each `RUN` instruction will execute the command on top of `writable layer` and `commit` the changes
+- aggregate multiple `RUN` instructions using `&&` to avoid multiple `commit`
+```Dockerfile
+RUN apt-get -qq update && apt-get -qq -y install curl
+```
