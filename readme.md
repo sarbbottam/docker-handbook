@@ -311,3 +311,10 @@ root         1     0  0 03:09 ?        00:00:00 ps -ef
   curl                      latest              2534caf55869        8 seconds ago       173.5 MB
   ubuntu                    latest              44776f55294a        4 days ago          120.1 MB
   ```
+  - run the image, with `docker run`
+  ```sh
+  $ docker run -it curl bash
+  root@86d61ffb3dac:/# which curl
+  /usr/bin/curl
+  root@86d61ffb3dac:/#
+  ```
