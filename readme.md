@@ -219,10 +219,10 @@ root         1     0  0 03:09 ?        00:00:00 ps -ef
 - use `-i` & `-t` `options` with `docker run`
   - `-i` to connect to STDIN on container
   - `-t` to get pseudo-terminal
-```sh
-$ docker run -i -t ubuntu bash
-root@0538835f124a:/#
-```
+  ```sh
+  $ docker run -i -t ubuntu bash
+  root@0538835f124a:/#
+  ```
   - `0538835f124a` is the `container id`
 
 ## More on containers ...
@@ -253,11 +253,11 @@ root         1     0  0 03:09 ?        00:00:00 ps -ef
   - `$ docker logs -f container-id` is similat to `tail -f`
 - `$ docker run -d -P tomcat` will run tomcat in detached mode
   - `-P` tell `docker` to map `container port` to `host port`
-```sh
-$ docker ps
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS                     NAMES
-3c4e535cfae8        tomcat              "catalina.sh run"   3 seconds ago       Up 2 seconds        0.0.0.0:32769->8080/tcp   hungry_pike
-```
+  ```sh
+  $ docker ps
+  CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS                     NAMES
+  3c4e535cfae8        tomcat              "catalina.sh run"   3 seconds ago       Up 2 seconds        0.0.0.0:32769->8080/tcp   hungry_pike
+  ```
 - checkout `IP:PORT` in browser; for example `0.0.0.0:32769` w.r.t. above `docker ps`
 - if no command is specified to `docker run` it would execute the `default` command.
   - for tomcat its `catalina.sh run`
