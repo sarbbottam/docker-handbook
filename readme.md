@@ -29,6 +29,7 @@ My notes from [docker self paced training](https://training.docker.com/self-pace
 - [Containers in detached mode](#containers-in-detached-mode)
 - [Image layers](#image-layers)
 - [Container writable layer](#container-writable-layer)
+- [`docker commit`](#docker-commit)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -280,3 +281,33 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
   - original read only version is hidden
   - changes happen in writable layer
   - `copy on write system` makes the spinning up container fast
+
+## `docker commit`
+
+- `docker commit` saves changes in a `container` as a new `image`
+- `$ docker commit [OPTIONS] CONTAINER [REPOSITORY[:TAG]]`
+  - if no [TAG] is specified, `docker` will use `latest`
+  - if no `REPOSITORY` is specified `REPOSITORY` and `TAG` will be `none`
+- let's see it in action
+  - `$ docker run -it ubuntu bash`
+  - in the `ubuntu` container `$ apt-get install -y curl`
+    - if you find `E: Unable to locate package curl` error
+      - `$ apt-get -qq update`
+      - `$ apt-get -qq -y install curl`
+      - refer [this StackoOverflow post](http://stackoverflow.com/questions/27273412/cannot-install-packages-inside-docker-ubuntu-image) for further details
+  - if the `prompt` seems to be hanging, try pressing `return` or `ctrl + c` and retry
+  - `exit` from the container
+  - list the container
+  ```sh
+  $ docker ps -a
+  CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                     PORTS               NAMES
+  9442903e27cc        ubuntu              "bash"              8 minutes ago       Exited (0) 3 seconds ago                       sad_lichterman
+  ```
+  - `$ docker commit 9442903e27cc curl`
+  - list `docker images`
+  ```sh
+  $ docker images
+  REPOSITORY                TAG                 IMAGE ID            CREATED             SIZE
+  curl                      latest              2534caf55869        8 seconds ago       173.5 MB
+  ubuntu                    latest              44776f55294a        4 days ago          120.1 MB
+  ```
