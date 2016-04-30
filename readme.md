@@ -28,6 +28,7 @@ My notes from [docker self paced training](https://training.docker.com/self-pace
 - [More on containers ...](#more-on-containers-)
 - [Containers in detached mode](#containers-in-detached-mode)
 - [Image layers](#image-layers)
+- [Container writable layer](#container-writable-layer)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -266,3 +267,16 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
 - a **`layer` is just another image**
 - every `image` contains a base layer
 - layers are read only
+
+## Container writable layer
+
+- when a container is launched from an image, docker adds a writable layer on top.
+  - a read/write file system on top of all other layers
+- the process that the container will run will be run in this read/write layer
+- any changes made will be made to this read/write layer
+- all the other layers are readonly
+- `docker` uses `copy on write system`
+  - a file from read only layer in copied  to a writable layer
+  - original read only version is hidden
+  - changes happen in writable layer
+  - `copy on write system` makes the spinning up container fast
