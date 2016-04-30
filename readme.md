@@ -34,6 +34,7 @@ My notes from [docker self paced training](https://training.docker.com/self-pace
   - [What is Dockerfile?](#what-is-dockerfile)
   - [Dockerfile instructions](#dockerfile-instructions)
   - [`RUN` instruction](#run-instruction)
+- [Build image from `Dockerfile`](#build-image-from-dockerfile)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -350,4 +351,35 @@ RUN apt-get -qq -y install curl
 - aggregate multiple `RUN` instructions using `&&` to avoid multiple `commit`
 ```Dockerfile
 RUN apt-get -qq update && apt-get -qq -y install curl
+```
+
+## Build image from `Dockerfile`
+
+- `$ docker build [OPTIONS] PATH | URL | -`
+- `PATH` is the build `context`
+- `docker build` will look for `Dockerfile` at the root of the `context`
+  - use `-f <file-name>` to specify a custom docker file
+- option `-t [repository:tag]` will tag the `image`
+```sh
+$ docker build -t curl .
+Sending build context to Docker daemon 261.6 kB
+Step 1 : FROM ubuntu
+ ---> 44776f55294a
+Step 2 : RUN apt-get -qq update
+ ---> Running in ba9c3738f17b
+
+ ---> fdbb7e8242d7
+Removing intermediate container ba9c3738f17b
+Step 3 : RUN apt-get -qq -y install curl
+ ---> Running in e03c750ff71a
+
+ ---> 33374acd807e
+Removing intermediate container e03c750ff71a
+Successfully built 33374acd807e
+```
+- verify the image built via `docker images`
+```sh
+$ docker images
+REPOSITORY                TAG                 IMAGE ID            CREATED             SIZE
+curl                      latest              33374acd807e        2 minutes ago       173.5 MB
 ```
