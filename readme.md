@@ -23,6 +23,7 @@ My notes from [docker self paced training](https://training.docker.com/self-pace
 - [Docker orchestration](#docker-orchestration)
 - [Benefits of Docker](#benefits-of-docker)
 - [Docker images](#docker-images)
+- [Docker containers](#docker-containers)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -195,3 +196,14 @@ hello-world         latest              94df4f0ce8a4        3 days ago          
 - `$ docker run <image>` will fetch the image from the `docker registry` (most likely hub.docker.com) if not available locally
 - `images` are specified by `repository:tag`
 - if no tag is specified `docker` will use the tag `latest`
+
+## Docker containers
+
+- `$ docker run [options] image [command] [arg...]` will `create` and `run` a `container` from the specified `image`
+- `image` is specified with `repository:tag`
+- `$ docker run ubuntu ps -ef`
+```sh
+# will download the image if not available locally ...
+UID        PID  PPID  C STIME TTY          TIME CMD
+root         1     0  0 03:09 ?        00:00:00 ps -ef
+```
