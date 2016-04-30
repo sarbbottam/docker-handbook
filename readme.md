@@ -35,6 +35,7 @@ My notes from [docker self paced training](https://training.docker.com/self-pace
   - [Dockerfile instructions](#dockerfile-instructions)
 - [`RUN` instruction](#run-instruction)
 - [Build image from `Dockerfile`](#build-image-from-dockerfile)
+- [`CMD` instruction](#cmd-instruction)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -382,4 +383,37 @@ Successfully built 33374acd807e
 $ docker images
 REPOSITORY                TAG                 IMAGE ID            CREATED             SIZE
 curl                      latest              33374acd807e        2 minutes ago       173.5 MB
+```
+
+## `CMD` instruction
+
+- `CMD` defines the default command that will be executed when the container is executed
+- `CMD` no role during `image` creation
+- **only one** `CMD`, the last one wins
+- can be overridden at run time
+- `CMD` can be in  three forms
+  - `CMD ["executable","param1","param2"]` (exec form, this is the preferred form)
+  - `CMD ["param1","param2"]` (as default parameters to ENTRYPOINT)
+  - `CMD command param1 param2` (shell form)
+- create a new image with `CMD`
+```Dockerfile
+FROM ubuntu
+
+RUN apt-get -qq update
+RUN apt-get -qq -y install curl
+RUN apt-get -qq -y install iputils-ping
+
+CMD ["ping", "127.0.0.1",  "-c", "30"]
+```
+- `$ docker build -t ping .` to build a new image
+- run the new image via `docker run`
+```sh
+$ docker run ping
+64 bytes from 127.0.0.1: icmp_seq=1 ttl=64 time=0.039 ms
+... 30 times
+```
+- passing a command via `docker run` will override the default `CMD`
+```sh
+$ docker run ping echo hello world
+hello world
 ```
