@@ -1,4 +1,4 @@
-🐳 docker up and running
+🐳 docker handbook
 ---
 
 🗒notes from [docker self paced training](https://training.docker.com/self-paced-training)
