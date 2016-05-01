@@ -39,6 +39,7 @@ My notes from [docker self paced training](https://training.docker.com/self-pace
 - [`ENTRYPOINT` instruction](#entrypoint-instruction)
 - [Start and stop a contanier](#start-and-stop-a-contanier)
 - [Terminal access to a container](#terminal-access-to-a-container)
+- [Deleting container](#deleting-container)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -499,3 +500,9 @@ root         1     0  1 17:41 ?        00:00:03 /usr/lib/jvm/java-7-openjdk-amd6
 root        32     0  0 17:43 ?        00:00:00 bash
 root        39    32  0 17:44 ?        00:00:00 ps -ef
 ```
+
+## Deleting container
+
+- only the stopped containers can be deleted
+- `$ docker rm contanier-id`
+- `$ docker rm $(docker ps -aq)` will delete all the stopped container
