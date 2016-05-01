@@ -38,6 +38,7 @@ My notes from [docker self paced training](https://training.docker.com/self-pace
 - [`CMD` instruction](#cmd-instruction)
 - [`ENTRYPOINT` instruction](#entrypoint-instruction)
 - [Start and stop a contanier](#start-and-stop-a-contanier)
+- [Terminal access to a container](#terminal-access-to-a-container)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -473,3 +474,28 @@ rtt min/avg/max/mdev = 0.037/0.040/0.043/0.008 ms
 - `docker stop <container-id>` to stop a container
 - `docker ps` to list all the active containers and their corresponding ids
 - `docker ps -a` will list all the containers including exited ones
+
+## Terminal access to a container
+
+- `$ docker exec [OPTIONS] CONTAINER COMMAND [ARG...]` to start the command in the given container
+- run a long running process in a docker container in detached mode
+```sh
+$ docker run -d tomcat
+e00264199cf66426aafcf5df48c5ee2b2ddf408bee62d357c2d1d23791f58c26
+$ docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+e00264199cf6        tomcat              "catalina.sh run"   6 seconds ago       Up 5 seconds        8080/tcp            pensive_engelbart
+```
+- run `bash` in the already running container
+```sh
+$ docker exec -i -t e00264199cf6 bash
+root@e00264199cf6:/usr/local/tomcat#
+```
+- exiting from this process will not stop the container as this is not the process with `pid 1`
+```sh
+root@e00264199cf6:/usr/local/tomcat# ps -ef
+UID        PID  PPID  C STIME TTY          TIME CMD
+root         1     0  1 17:41 ?        00:00:03 /usr/lib/jvm/java-7-openjdk-amd64/jre/bin/java -Djava.util.logging.config.file=/usr/local/tomcat/conf/loggin
+root        32     0  0 17:43 ?        00:00:00 bash
+root        39    32  0 17:44 ?        00:00:00 ps -ef
+```
