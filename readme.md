@@ -37,6 +37,7 @@ My notes from [docker self paced training](https://training.docker.com/self-pace
 - [Build image from `Dockerfile`](#build-image-from-dockerfile)
 - [`CMD` instruction](#cmd-instruction)
 - [`ENTRYPOINT` instruction](#entrypoint-instruction)
+- [Start and stop a contanier](#start-and-stop-a-contanier)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -465,3 +466,10 @@ PING 127.0.0.1 (127.0.0.1) 56(84) bytes of data.
 5 packets transmitted, 5 received, 0% packet loss, time 3996ms
 rtt min/avg/max/mdev = 0.037/0.040/0.043/0.008 ms
 ```
+
+## Start and stop a contanier
+
+- `docker start <container-id>` to start a container
+- `docker stop <container-id>` to stop a container
+- `docker ps` to list all the active containers and their corresponding ids
+- `docker ps -a` will list all the containers including exited ones
