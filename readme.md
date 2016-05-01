@@ -36,6 +36,7 @@ My notes from [docker self paced training](https://training.docker.com/self-pace
 - [`RUN` instruction](#run-instruction)
 - [Build image from `Dockerfile`](#build-image-from-dockerfile)
 - [`CMD` instruction](#cmd-instruction)
+- [`ENTRYPOINT` instruction](#entrypoint-instruction)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -416,4 +417,53 @@ $ docker run ping
 ```sh
 $ docker run ping echo hello world
 hello world
+```
+
+## `ENTRYPOINT` instruction
+
+An `ENTRYPOINT` allows you to configure a container that will run as an executable.
+For example, the following will start nginx with its default content, listening on port 80:
+
+```sh
+docker run -i -t --rm -p 80:80 nginx
+```
+- `ENTRYPOINT` can be in  two forms
+  - `ENTRYPOINT ["executable", "param1", "param2"]` (exec form, preferred)
+  - `ENTRYPOINT command param1 param2 (shell form)`
+- `ENTRYPOINT` in `exec` form will accept arguments passed via `docker run`
+- create an image with `ENTRYPOINT`
+
+```Dockerfile
+FROM ubuntu
+
+RUN apt-get -qq update
+RUN apt-get -qq -y install curl
+RUN apt-get -qq -y install iputils-ping
+
+ENTRYPOINT ["ping"]
+```
+- `$ docker build -t ping .` to build a new image
+- run the new image via `docker run` without any arguments
+
+```sh
+$ docker run ping
+Usage: ping [-aAbBdDfhLnOqrRUvV] [-c count] [-i interval] [-I interface]
+            [-m mark] [-M pmtudisc_option] [-l preload] [-p pattern] [-Q tos]
+            [-s packetsize] [-S sndbuf] [-t ttl] [-T timestamp_option]
+            [-w deadline] [-W timeout] [hop1 ...] destination
+```
+- run the new image via `docker run` with arguments
+
+```sh
+$ docker run ping 127.0.0.1 -c 5
+PING 127.0.0.1 (127.0.0.1) 56(84) bytes of data.
+64 bytes from 127.0.0.1: icmp_seq=1 ttl=64 time=0.043 ms
+64 bytes from 127.0.0.1: icmp_seq=2 ttl=64 time=0.042 ms
+64 bytes from 127.0.0.1: icmp_seq=3 ttl=64 time=0.039 ms
+64 bytes from 127.0.0.1: icmp_seq=4 ttl=64 time=0.043 ms
+64 bytes from 127.0.0.1: icmp_seq=5 ttl=64 time=0.037 ms
+
+--- 127.0.0.1 ping statistics ---
+5 packets transmitted, 5 received, 0% packet loss, time 3996ms
+rtt min/avg/max/mdev = 0.037/0.040/0.043/0.008 ms
 ```
