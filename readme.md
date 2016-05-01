@@ -5,5 +5,5 @@
 
 ---
 
-- [Introduction to Docker](intro-to-docker.md)
-- [Docker Fundamentals](docker-fundamentals.md)
+- [Introduction to Docker](notes/intro-to-docker.md)
+- [Docker Fundamentals](notes/docker-fundamentals.md)
