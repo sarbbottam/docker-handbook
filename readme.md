@@ -41,6 +41,7 @@ My notes from [docker self paced training](https://training.docker.com/self-pace
 - [Terminal access to a container](#terminal-access-to-a-container)
 - [Deleting container](#deleting-container)
 - [Deleting image](#deleting-image)
+- [Pushing images to Docker Hub](#pushing-images-to-docker-hub)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -512,3 +513,13 @@ root        39    32  0 17:44 ?        00:00:00 ps -ef
 
 - `$ docker rmi <image>`
   - <image> could be either image-id or repo:tag
+
+## Pushing images to Docker Hub
+
+- create an account, if you dont have one at [hub.docker.com](https://hub.docker.com)
+- navigate to [add repo](https://hub.docker.com/add/repository/)
+  - and follow the instructions
+- once the repo is created at [hub.docker.com](https://hub.docker.com), use `$ docker push repo:tag` to push it to docker hub.
+- prior pushing authenticate docker via hub.docker.com credentials
+  - `$ docker login` and follow the promt and instrunctions
+- `$ docker push sarbbottam/hello-world`
