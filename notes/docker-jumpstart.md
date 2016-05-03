@@ -286,13 +286,13 @@ root        39    32  0 17:44 ?        00:00:00 ps -ef
 
 ### Container writable layer
 
-- when a container is launched from an image, docker adds a writable layer on top.
-  - a read/write file system on top of all other layers
-- the process that the container will run will be run in this read/write layer
-- any changes made will be made to this read/write layer
-- all the other layers are readonly
+- when a `container` is launched via `docker run`, from an `image`, docker adds a `writable layer` on top.
+  - a `read/write` file system, on top of all other layers
+- the process that the container will run, will be run in this `read/write` layer
+- any changes made in the container, will be made to this `read/write` layer
+- all the other layers are `read only`
 - `docker` uses `copy on write system`
-  - a file from read only layer in copied  to a writable layer
-  - original read only version is hidden
-  - changes happen in writable layer
-  - `copy on write system` makes the spinning up container fast
+  - a file from `read only` layer is copied to a `writable layer`
+  - original `read only` version is hidden
+  - changes happen in `writable layer`
+  - `copy on write system` makes the spinning up a `container` fast
