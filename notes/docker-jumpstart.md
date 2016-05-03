@@ -244,25 +244,26 @@ root@0538835f124a:/#
 
 ### Containers in detached mode
 
-- `$ docker run -d image command`; `-d` tells `docker` to run the container in detached mode, in background
-  - make sure the `command` provided runs a hanging process, like run a web server, otherwise the container will stop as soon as the process with `PID 1` exits
-- `$ docker logs container-id` to inspect the output of the container
-  - `$ docker logs -f container-id` is similat to `tail -f`
-- `$ docker run -d -P tomcat` will run tomcat in detached mode
-  - `-P` tell `docker` to map `container port` to `host port`
+- `$ docker run -d image command`; `-d` tells `docker` to run the `container` in `detached mode`, in the background
+  - make sure the `command` provided runs a `hanging` / `long running` process, like running a web server, otherwise the `container` will stop as soon as the `process` with `PID 1` exits
+- `$ docker logs <container-id>` to inspect the output of the container
+  - `$ docker logs -f <container-id>` is similar to `tail -f`
+- `$ docker run -d -P tomcat` will run `tomcat` in `detached mode`
+  - `-P` tells `docker` to auto map `container port` to `host port`
+  - read more about `port` mapping at [Docker Network Basics](docker-network.md)
   ```sh
   $ docker ps
   CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS                     NAMES
   3c4e535cfae8        tomcat              "catalina.sh run"   3 seconds ago       Up 2 seconds        0.0.0.0:32769->8080/tcp   hungry_pike
   ```
 - checkout `IP:PORT` in browser; for example `0.0.0.0:32769` w.r.t. above `docker ps`
-- if no command is specified to `docker run` it would execute the `default` command.
+- if no command is specified to `docker run` it would execute the `default command`.
   - for tomcat it's `catalina.sh run`
 
 ### Terminal access to a container started in detached mode
 
-- `$ docker exec [OPTIONS] CONTAINER COMMAND [ARG...]` to start the command in the given container
-- run a long running process in a docker container in detached mode
+- `$ docker exec [OPTIONS] CONTAINER COMMAND [ARG...]` to start the `command` in the given `container`
+- run a `long running` process in a docker `container` in `detached mode`
 ```sh
 $ docker run -d tomcat
 e00264199cf66426aafcf5df48c5ee2b2ddf408bee62d357c2d1d23791f58c26
@@ -270,12 +271,12 @@ $ docker ps
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
 e00264199cf6        tomcat              "catalina.sh run"   6 seconds ago       Up 5 seconds        8080/tcp            pensive_engelbart
 ```
-- run `bash` in the already running container
+- to run `bash`, in the already running container, use the `docker exec`
 ```sh
 $ docker exec -i -t e00264199cf6 bash
 root@e00264199cf6:/usr/local/tomcat#
 ```
-- exiting from this process will not stop the container as this is not the process with `pid 1`
+- exiting from this `process`, will not stop the `container`, as this is not the `process` with `pid 1`
 ```sh
 root@e00264199cf6:/usr/local/tomcat# ps -ef
 UID        PID  PPID  C STIME TTY          TIME CMD
