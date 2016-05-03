@@ -178,11 +178,11 @@ For more examples and ideas, visit:
 For the very first execution of `$ docker run hello-world`, `docker` downloaded the `image` `hello-world` for `docker` `registry`
 and created a `container` to run the `application` encapsulated in the image.
 
+In case of `hello-world` it excuted [`hello`](https://github.com/docker-library/hello-world/blob/master/Dockerfile#L3)
+
 ## Docker images
 
 > Images are read only templates, used to create containers
-
-In case of `hello-world` it excuted [`hello`](https://github.com/docker-library/hello-world/blob/master/Dockerfile#L3)
 
 - `$ docker run <image>` will fetch the image from the `docker registry` (most likely hub.docker.com), if not available locally
 - `$ docker run image` **will always create a new** `container`
