@@ -21,10 +21,10 @@
 ---
 ## Building Docker Images
 
-New image can be created by
+New `image` can be created by
 
-- tagging and exiting image with a new name
-  - it just a name (tag) change, the functionality remains the same as the old image
+- tagging and exiting `image` with a new name
+  - it just a name (tag) change, the functionality remains the same as the `old image`
 - making changes in a `container` and `commiting` the changes
 - building from a `Dockerfile`
 
@@ -38,18 +38,18 @@ $ docker tag [OPTIONS] IMAGE[:TAG] [REGISTRYHOST/][USERNAME/]NAME[:TAG]
 
 - `docker commit` saves changes in a `container` as a new `image`
 - `$ docker commit [OPTIONS] CONTAINER [REPOSITORY[:TAG]]`
-  - if no [TAG] is specified, `docker` will use `latest`
+  - if no `[TAG]` is specified, `docker` will use `latest`
   - if no `REPOSITORY` is specified `REPOSITORY` and `TAG` will be `none`
 - let's see it in action
   - `$ docker run -it ubuntu bash`
-  - in the `ubuntu` container `$ apt-get install -y curl`
+  - in the `ubuntu` `container` `$ apt-get install -y curl`
     - if you find `E: Unable to locate package curl` error
       - `$ apt-get -qq update`
       - `$ apt-get -qq -y install curl`
       - refer [this StackoOverflow post](http://stackoverflow.com/questions/27273412/cannot-install-packages-inside-docker-ubuntu-image) for further details
   - if the `prompt` seems to be hanging, try pressing `return` or `ctrl + c` and retry
-  - `exit` from the container
-  - list the container
+  - `exit` from the `container`
+  - get the `container-id`, by listing the `container`
   ```sh
   $ docker ps -a
   CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                     PORTS               NAMES
@@ -63,7 +63,7 @@ $ docker tag [OPTIONS] IMAGE[:TAG] [REGISTRYHOST/][USERNAME/]NAME[:TAG]
   curl                      latest              2534caf55869        8 seconds ago       173.5 MB
   ubuntu                    latest              44776f55294a        4 days ago          120.1 MB
   ```
-  - run the image, with `docker run`
+  - run the `image`, with `docker run`
   ```sh
   $ docker run -it curl bash
   root@86d61ffb3dac:/# which curl
@@ -79,7 +79,7 @@ $ docker tag [OPTIONS] IMAGE[:TAG] [REGISTRYHOST/][USERNAME/]NAME[:TAG]
   - use `-f <file-name>` to specify a custom docker file
 - option `-t [repository:tag]` will tag the `image`
 
-Consider the following Dockerfile
+Consider the following `Dockerfile`
 
 ```Dockerfile
 FROM ubuntu
@@ -87,7 +87,7 @@ RUN apt-get -qq update
 RUN apt-get -qq -y install curl
 ```
 
-Lets create an image from the above `Dockerfile`
+Let's create an `image` from the above `Dockerfile`
 ```sh
 $ docker build -t curl .
 Sending build context to Docker daemon 261.6 kB
@@ -105,7 +105,7 @@ Step 3 : RUN apt-get -qq -y install curl
 Removing intermediate container e03c750ff71a
 Successfully built 33374acd807e
 ```
-- verify the image built via `docker images`
+- verify the `image` built, via `docker images`
 ```sh
 $ docker images
 REPOSITORY                TAG                 IMAGE ID            CREATED             SIZE
@@ -116,8 +116,8 @@ curl                      latest              33374acd807e        2 minutes ago 
 
 > A `Dockerfile` is a configuration file that contains instructions for building a `Docker image`
 
-- more effective than docker commit
-- create image multiple times via `docker build` without carrying out the redundant steps manually
+- more effective than `docker commit`
+- create `image` multiple times via `docker build` without carrying out the redundant steps manually
 - easily fits in CI/CD process
 
 ## Dockerfile instructions
@@ -134,7 +134,7 @@ RUN apt-get -qq -y install curl
 
 ## `RUN` instruction
 
-- each `RUN` instruction will execute the command on top of `writable layer` and `commit` the changes
+- each `RUN` instruction will execute the `command` on top of `writable layer` and `commit` the changes
 - aggregate multiple `RUN` instructions using `&&` to avoid multiple `commit`
 ```Dockerfile
 RUN apt-get -qq update && apt-get -qq -y install curl
@@ -142,15 +142,17 @@ RUN apt-get -qq update && apt-get -qq -y install curl
 
 ## `CMD` instruction
 
-- `CMD` defines the default command that will be executed when the container is executed
-- `CMD` no role during `image` creation
+- `CMD` defines the `default command`, that will be executed when the `container` is executed
+- `CMD` has no role during `image` creation
 - **only one** `CMD`, the last one wins
 - can be overridden at run time
 - `CMD` can be in  three forms
   - `CMD ["executable","param1","param2"]` (exec form, this is the preferred form)
   - `CMD ["param1","param2"]` (as default parameters to ENTRYPOINT)
   - `CMD command param1 param2` (shell form)
-- create a new image with `CMD`
+
+Let's create a new image with `CMD`
+
 ```Dockerfile
 FROM ubuntu
 
@@ -161,7 +163,7 @@ RUN apt-get -qq -y install iputils-ping
 CMD ["ping", "127.0.0.1",  "-c", "30"]
 ```
 - `$ docker build -t ping .` to build a new image
-- run the new image via `docker run`
+- run the new `image` via `docker run`
 ```sh
 $ docker run ping
 64 bytes from 127.0.0.1: icmp_seq=1 ttl=64 time=0.039 ms
@@ -175,7 +177,7 @@ hello world
 
 ## `ENTRYPOINT` instruction
 
-An `ENTRYPOINT` allows you to configure a container that will run as an executable.
+An `ENTRYPOINT` allows you to configure a `container` that will run as an executable.
 For example, the following will start nginx with its default content, listening on port 80.
 
 ```sh
@@ -198,8 +200,8 @@ RUN apt-get -qq -y install iputils-ping
 ENTRYPOINT ["ping"]
 ```
 
-- `$ docker build -t ping .` to build a new image
-- run the new image via `docker run` without any arguments
+- `$ docker build -t ping .` to build a new `image`
+- run the new `image` via `docker run` without any arguments
 
 ```sh
 $ docker run ping
@@ -209,7 +211,7 @@ Usage: ping [-aAbBdDfhLnOqrRUvV] [-c count] [-i interval] [-I interface]
             [-w deadline] [-W timeout] [hop1 ...] destination
 ```
 
-- run the new image via `docker run` with arguments
+- run the new `image` via `docker run` with arguments
 
 ```sh
 $ docker run ping 127.0.0.1 -c 5
