@@ -26,11 +26,11 @@ A **Volume** is a designated directory in a container, which is designed to pers
 ## Mount a Volume
 
 - Volumes are mounted when creating or executing a container
-- Volume paths must be absolute
+- Volume **paths must be absolute**
 
 ## `VOLUME` in `Dockerfile`
 
-- cannot map to host directories
+- **cannot map to host directories**
   -  use `docker run -v` to map to a host directory
 ```Dockerfile
 VOLUME /www

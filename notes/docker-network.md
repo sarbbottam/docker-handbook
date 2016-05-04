@@ -17,11 +17,11 @@
 - use `-p host-port:container-port`
 - use `-P` for auto-mapping
   - `docker` will auto map the contanier-port to container-port from `49153` to `65535`
-  - **only works for the ports sepecified via `EXPOSE` instruction in `Dockerfile`
+  - **only works for the ports** sepecified via `EXPOSE` instruction in `Dockerfile`
 
 ## `EXPOSE` instruction
 
-configures whihc ports a container will listen on at runtime
+configures to which `ports`, a `container` will listen on at runtime
 
 ```Dockerfile
 EXPOSE 80 443
@@ -29,12 +29,17 @@ EXPOSE 80 443
 
 ## Linking containers
 
-Linking is a communication method between containers which allows them to securely transfer data from one to another
+Linking is a communication method between `containers`, which allows them to securely transfer data from one to another
 
-- recipient containers have access to data on source containers
+- recipient `containers` have access to data on source `containers`
 - links are established based on container names
-- create a named source container
-- create recipient container and use `--link` to link
+- useful for micro service architecture
+  - tomcat hosting the web-application in a separate container
+  - mysql is running in a separate container
+
+Let's see it in action
+ - create a named `source container`
+ - create `recipient container` and use `--link` to link
 
 ```sh
 $ docker run -d --name database postgres
@@ -68,7 +73,3 @@ $ docker inspect 32d6751b1d88 | grep IPAddress
             "IPAddress": "172.17.0.3",
                     "IPAddress": "172.17.0.3",
 ```
-
-- useful for micro service architecture
-  - tomcat hosting the web-application in a separate container
-  - mysql is running in a separate container
