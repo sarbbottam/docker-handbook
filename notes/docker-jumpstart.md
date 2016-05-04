@@ -248,6 +248,7 @@ root@0538835f124a:/#
   - make sure the `command` provided runs a `hanging` / `long running` process, like running a web server, otherwise the `container` will stop as soon as the `process` with `PID 1` exits
 - `$ docker logs <container-id>` to inspect the output of the `container`
   - `$ docker logs -f <container-id>` is similar to `tail -f`
+  - `$ docker logs -f --tail -1 <container-id>` will display from the `current last log line`.
 - `$ docker run -d -P tomcat` will run `tomcat` in `detached mode`
   - `-P` tells `docker` to auto map `container port` to `host port`
   - read more about `port` mapping at [Docker Network Basics](docker-network.md)
