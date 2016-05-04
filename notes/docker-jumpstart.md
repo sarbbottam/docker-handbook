@@ -74,7 +74,7 @@ cons
 > container based virtualization uses the kernel on the host's OS to run multiple guest instances
 
 - each guest instance is called `container`
-- each container has its own
+- each `container` has its own
   - `root` file system
   - `process`
   - `memory`
@@ -84,16 +84,16 @@ cons
 > It looks and operates like a VM but it is not a VM
 
 > **container interacts with host OS' kernel to create an isolated application platform**
-Within each container, application and its dependencies are installed
+Within each `container`, application and its dependencies are installed
 
 > container isolates the run time environment
 
 ### Container vs VMs
 
-- containers are lightweight
+- `containers` are lightweight
 - no guest OS
 - less CPU, RAM, storage space
-- more containers per m/c than VM
+- more `containers` per m/c than VM
 - greater portability
 
 ## Benefits of Docker
@@ -108,7 +108,7 @@ Within each container, application and its dependencies are installed
 
 ## Docker concepts and terminology
 
-> `docker engine` is program that enables containers to be built, shipped and run.
+> `docker engine` is program that enables `containers` to be built, shipped and run.
 
 It is also known as `docker daemon` or `docker server`.
 - it uses linux kernel namespaces and control groups to create and manage `containers`.
@@ -176,15 +176,15 @@ For more examples and ideas, visit:
 ## Docker containers and images
 
 For the very first execution of `$ docker run hello-world`, `docker` downloaded the `image` `hello-world` for `docker` `registry`
-and created a `container` to run the `application` encapsulated in the image.
+and created a `container` to run the `application` encapsulated in the `image`.
 
 In case of `hello-world` it executed [`hello`](https://github.com/docker-library/hello-world/blob/master/Dockerfile#L3)
 
 ## Docker images
 
-> Images are read only templates, used to create containers
+> Images are read only templates, used to create `containers`
 
-- `$ docker run <image>` will fetch the image from the `docker registry` (most likely hub.docker.com), if not available locally
+- `$ docker run <image>` will fetch the `image` from the `docker registry` (most likely hub.docker.com), if not available locally
 - `$ docker run <image>` **will always create a new** `container`
 - `images` are specified by `repository:tag`
 - if no `tag` is specified `docker` will use the tag `latest`
@@ -213,27 +213,27 @@ Error response from daemon: conflict: unable to delete 94df4f0ce8a4 (must be for
 
 ## Docker containers
 
-> Container is an isolated application platform and are based on one or more images and contains everything to run an application, packaged with dependencies
+> Container is an isolated application platform and are based on one or more `images` and contains everything to run an application, packaged with dependencies
 
 - `$ docker run [options] image [command] [arg...]` will `create` and `run` a `container` from the specified `image`
-- to list all the active `container`s, use `docker ps`
-- to list all the `container`s, active or inactive, use `docker ps -a`
-- to `stop` a container, use `docker stop <container-id>`
-- to `start` a container, use `docker start <container-id>`
-- to `restart` a container, use `docker restart <container-id>`
-- to `delete` a container, use `docker rm <container-id>`
-  - an active container can not be deleted
-  - a container needs to be stopped before it can be deleted
-- to delete all the containers use `docker rm $(docker ps -aq)`
-- a container runs as long as the process corresponding to the `command`, specified in the `docker run [options] image [command]` runs
-  - if no `command` is specified, it runs the default `command`
-- command's `pid` is always 1
+- to list all the active `containers`, use `docker ps`
+- to list all the `containers`, active or inactive, use `docker ps -a`
+- to `stop` a `container`, use `docker stop <container-id>`
+- to `start` a `container`, use `docker start <container-id>`
+- to `restart` a `container`, use `docker restart <container-id>`
+- to `delete` a `container`, use `docker rm <container-id>`
+  - an active `container` can not be deleted
+  - a `container` needs to be stopped before it can be deleted
+- to delete all the `containers` use `docker rm $(docker ps -aq)`
+- a `container` runs as long as the process corresponding to the `command`, specified in the `docker run [options] image [command]` runs
+  - if no `command` is specified, default `command` will be executed
+- `command's` `pid` is always 1
 - `docker` provides a random name to the `container` if not explicitly provided
 
 ### Docker containers with terminal access
 
 - use `-i` & `-t` `options` with `docker run`
-- `-i` to connect to STDIN on container
+- `-i` to connect to STDIN on `container`
 - `-t` to get pseudo-terminal
 
 ```sh
@@ -246,7 +246,7 @@ root@0538835f124a:/#
 
 - `$ docker run -d image command`; `-d` tells `docker` to run the `container` in `detached mode`, in the background
   - make sure the `command` provided runs a `hanging` / `long running` process, like running a web server, otherwise the `container` will stop as soon as the `process` with `PID 1` exits
-- `$ docker logs <container-id>` to inspect the output of the container
+- `$ docker logs <container-id>` to inspect the output of the `container`
   - `$ docker logs -f <container-id>` is similar to `tail -f`
 - `$ docker run -d -P tomcat` will run `tomcat` in `detached mode`
   - `-P` tells `docker` to auto map `container port` to `host port`
@@ -271,7 +271,7 @@ $ docker ps
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
 e00264199cf6        tomcat              "catalina.sh run"   6 seconds ago       Up 5 seconds        8080/tcp            pensive_engelbart
 ```
-- to run `bash`, in the already running container, use the `docker exec`
+- to run `bash`, in the already running `container`, use the `docker exec`
 ```sh
 $ docker exec -i -t e00264199cf6 bash
 root@e00264199cf6:/usr/local/tomcat#
@@ -289,8 +289,8 @@ root        39    32  0 17:44 ?        00:00:00 ps -ef
 
 - when a `container` is launched via `docker run`, from an `image`, docker adds a `writable layer` on top.
   - a `read/write` file system, on top of all other layers
-- the process that the container will run, will be run in this `read/write` layer
-- any changes made in the container, will be made to this `read/write` layer
+- the process that the `container` will run, will be run in this `read/write` layer
+- any changes made in the `container`, will be made to this `read/write` layer
 - all the other layers are `read only`
 - `docker` uses `copy on write system`
   - a file from `read only` layer is copied to a `writable layer`
