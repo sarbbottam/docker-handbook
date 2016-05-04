@@ -286,6 +286,25 @@ root        32     0  0 17:43 ?        00:00:00 bash
 root        39    32  0 17:44 ?        00:00:00 ps -ef
 ```
 
+### Inspecting a container
+
+- `$ docker inspect <container-id>` displays the details of the desired `container` in JSON format
+- use `--format` followed by `format`
+- or `pipe` the output of `docker inspect` to `grep
+
+### Container's Application logs
+- map `container's` application log directory to a `host directory` via `docker run`
+  - `host directory` `path` must be `absolute path`
+
+```
+$ docker run -d -P -v /absolute/path/to/host/directory:/var/log/nginx nginx
+```
+```
+$ cd /absolute/path/to/host/directory
+$ ls
+access.log error.log
+```
+
 ### Container writable layer
 
 - when a `container` is launched via `docker run`, from an `image`, docker adds a `writable layer` on top.
