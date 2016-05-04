@@ -178,24 +178,24 @@ For more examples and ideas, visit:
 For the very first execution of `$ docker run hello-world`, `docker` downloaded the `image` `hello-world` for `docker` `registry`
 and created a `container` to run the `application` encapsulated in the image.
 
-In case of `hello-world` it excuted [`hello`](https://github.com/docker-library/hello-world/blob/master/Dockerfile#L3)
+In case of `hello-world` it executed [`hello`](https://github.com/docker-library/hello-world/blob/master/Dockerfile#L3)
 
 ## Docker images
 
 > Images are read only templates, used to create containers
 
 - `$ docker run <image>` will fetch the image from the `docker registry` (most likely hub.docker.com), if not available locally
-- `$ docker run image` **will always create a new** `container`
+- `$ docker run <image>` **will always create a new** `container`
 - `images` are specified by `repository:tag`
-- if no tag is specified `docker` will use the tag `latest`
-- to list the available images, use `docker images`
+- if no `tag` is specified `docker` will use the tag `latest`
+- to `list` available `images`, use `docker images`
 ```
 $ docker images
 REPOSITORY               TAG                 IMAGE ID            CREATED             SIZE
 hello-world              latest              94df4f0ce8a4        6 days ago          967 B
 ```
-- to delete an images, use `docker rmi <image-id>`
-  - but if the `image` is being referenced by another `image` or by any `container`, you have to delete them first or use the `-f` option
+- to `delete` an `image`, use `docker rmi <image-id>`
+  - if the `image` is being referenced by another `image` or by any `container`, you have to `stop` and `delete` the `container` first or use the `-f` option
 ```
 $ docker rmi 94df4f0ce8a4
 Error response from daemon: conflict: unable to delete 94df4f0ce8a4 (must be forced) - image is referenced in one or more repositories
