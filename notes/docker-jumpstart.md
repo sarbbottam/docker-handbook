@@ -35,10 +35,10 @@
 
 Docker platform consists of multiple products/tools
 - docker engine (docker daemon or server)
-- `docker-machine`
 - `docker-compose`
-- docker swarm ?
 - [docker hub](https://hub.docker.com/)
+- `docker-machine` [Not in scope]
+- `docker-swarm` [Not in scope]
 
 ## Why container?
 

@@ -9,4 +9,4 @@
 - [Docker Build and Push Image](notes/docker-images.md)
 - [Docker Volume](notes/docker-volume.md)
 - [Docker Network Basics](notes/docker-network.md)
-- [Docker Orchestration](notes/docker-orchestration.md)
+- [Docker Compose](notes/docker-compose.md)
