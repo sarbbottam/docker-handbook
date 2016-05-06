@@ -23,6 +23,8 @@
   - [Docker containers with terminal access](#docker-containers-with-terminal-access)
   - [Containers in detached mode](#containers-in-detached-mode)
   - [Terminal access to a container started in detached mode](#terminal-access-to-a-container-started-in-detached-mode)
+  - [Inspecting a container](#inspecting-a-container)
+  - [Container's Application logs](#containers-application-logs)
   - [Container writable layer](#container-writable-layer)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
