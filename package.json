@@ -1,0 +1,29 @@
+{
+  "name": "docker-handbook",
+  "private": true,
+  "version": "1.0.0",
+  "description": "docker handbook, notes from docker self paced training",
+  "scripts": {
+    "precommit": "npm run doctoc",
+    "doctoc": "doctoc notes/*.md"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sarbbottam/docker-handbook.git"
+  },
+  "keywords": [
+    "docker",
+    "handbook",
+    "jumpstart"
+  ],
+  "author": "Sarbbottam Bandyopadhyay <sarbbottam@gmail.com> (https://sarbbottam.github.io/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sarbbottam/docker-handbook/issues"
+  },
+  "homepage": "https://github.com/sarbbottam/docker-handbook",
+  "devDependencies": {
+    "doctoc": "^1.0.0",
+    "husky": "^0.11.4"
+  }
+}
